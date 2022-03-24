@@ -30,6 +30,8 @@ Install all packages listed above in order to run the scripts provided.
 
 ## Quick start
 
+Run the file "create_csv_template.py" if you need help creating a csv file that matches the requirement of this script. From there, you can simply copy-paste experimental data into the csv file as you would an excel spreadsheet. Remember to save as csv when quitting!
+
 The Python file `Main.py` is provided as a foundation for editing commands. Plotting the graphs should be as easy as editing the variables and running the Python script.
 
 ### Editable variables
