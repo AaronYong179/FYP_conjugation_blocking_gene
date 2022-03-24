@@ -1,3 +1,4 @@
+import os
 import seaborn as sns
 import matplotlib.pyplot as plt
 from statannotations.Annotator import Annotator
@@ -160,13 +161,16 @@ class CEPlotter:
     def annotate_stats(self, pairs):
         """ Performs statistical annotations given a list of pairs to compare.
 
-        By default, an independent samples t-test is performed. 
+        By default, an independent samples t-test is performed. Returns None and
+        exits the method if None is given as an input
 
         Args:
             pairs (list) : A list of comparison pairs
                 e.g. [("MG1655", "ECOR A"), ("MG1655", "ECOR B"), ...] 
                 or [(("MG1655", "pRK24"), ("MG1655", "F")), ...] if secondary categorical variable
         """
+        if pairs is None:
+            return
         annot = Annotator(self.axis, pairs, data=self.plot_data, x=self.x, y=self.y, hue=self.hue)
         annot.configure(test='t-test_ind') # modify this if a different test is used
         annot.apply_and_annotate()
@@ -180,9 +184,9 @@ class CEPlotter:
                 the plot title if no file name is given.
         """
         if fname is None:
-            path = os.join(save_dir, f"{self.title}.png")
+            path = os.path.join(save_dir, f"{self.title}.png")
         else:
-            path = os.join(save_dir, f"{fname}.png")
+            path = os.path.join(save_dir, f"{fname}.png")
         plt.savefig(path)
         plt.show()
 
